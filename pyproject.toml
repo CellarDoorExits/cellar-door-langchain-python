@@ -7,7 +7,7 @@ name = "cellar-door-langchain"
 version = "0.1.0"
 description = "LangChain callback handler for EXIT Protocol departure markers"
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 requires-python = ">=3.10"
 authors = [
     { name = "Cellar Door", email = "hawthornhollows@gmail.com" },
