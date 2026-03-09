@@ -115,6 +115,8 @@ class TestExitCallbackHandler:
         handler = ExitCallbackHandler()
         handler.on_chain_error(RuntimeError("boom"), parent_run_id=None)
         assert len(handler.markers) == 1
+        # Error markers use FORCED exit type by default
+        assert handler.markers[0].exit_type == ExitType.FORCED
 
     def test_on_chain_error_skips_subchains(self) -> None:
         handler = ExitCallbackHandler(root_only=True)

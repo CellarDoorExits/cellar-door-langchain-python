@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 import logging
 import threading
-from collections import deque
+from collections import OrderedDict, deque
 from typing import Any, Callable
 from uuid import UUID
 
@@ -49,6 +49,8 @@ class ExitCallbackHandler(BaseCallbackHandler):
         fail_safe: If True (default), marker creation errors are logged but
             never propagated to the user's chain. Set to False to let
             exceptions bubble up.
+        error_exit_type: Exit type for on_chain_error markers. Defaults to
+            INVOLUNTARY (distinguishes errors from normal completions).
     """
 
     name: str = "ExitCallbackHandler"
@@ -62,10 +64,12 @@ class ExitCallbackHandler(BaseCallbackHandler):
         max_markers: int = 1000,
         root_only: bool = True,
         fail_safe: bool = True,
+        error_exit_type: ExitType = ExitType.FORCED,
     ) -> None:
         super().__init__()
         self.origin = origin
         self.exit_type = exit_type
+        self.error_exit_type = error_exit_type
         self.markers: deque[ExitMarker] = deque(maxlen=max_markers)
         self.max_markers = max_markers
         self.root_only = root_only
@@ -73,16 +77,16 @@ class ExitCallbackHandler(BaseCallbackHandler):
         self._on_marker = on_marker
         self._lock = threading.Lock()
         self._chain_depths: dict[UUID | None, int] = {}
-        self._agent_runs: set[UUID | None] = set()
+        self._agent_runs: OrderedDict[UUID | None, None] = OrderedDict()
 
-    def _record_marker(self) -> ExitMarker | None:
+    def _record_marker(self, exit_type: ExitType | None = None) -> ExitMarker | None:
         """Create and store a new EXIT marker.
 
         In fail_safe mode (default), exceptions are logged but swallowed
         so the user's chain is never broken by EXIT marker failures.
         """
         try:
-            result = quick_exit(self.origin, exit_type=self.exit_type)
+            result = quick_exit(self.origin, exit_type=exit_type or self.exit_type)
             marker = result.marker
             with self._lock:
                 self.markers.append(marker)
@@ -155,7 +159,7 @@ class ExitCallbackHandler(BaseCallbackHandler):
 
         if self.root_only and not is_root:
             return
-        self._record_marker()
+        self._record_marker(exit_type=self.error_exit_type)
 
     def on_agent_finish(
         self,
@@ -172,10 +176,10 @@ class ExitCallbackHandler(BaseCallbackHandler):
         with self._lock:
             if run_id in self._agent_runs:
                 return
-            self._agent_runs.add(run_id)
-            # Cap the set to prevent unbounded growth
-            if len(self._agent_runs) > self.max_markers:
-                self._agent_runs.clear()
+            self._agent_runs[run_id] = None
+            # Evict oldest entries (FIFO)
+            while len(self._agent_runs) > self.max_markers:
+                self._agent_runs.popitem(last=False)
         self._record_marker()
 
     def clear(self) -> None:
