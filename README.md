@@ -1,9 +1,11 @@
 # exit-door-langchain 𓉸
 
 [![PyPI](https://img.shields.io/pypi/v/exit-door-langchain)](https://pypi.org/project/exit-door-langchain/)
-[![tests](https://img.shields.io/badge/tests-19_passing-brightgreen)]()
+[![tests](https://img.shields.io/badge/tests-36_passing-brightgreen)]()
 [![Python](https://img.shields.io/pypi/pyversions/exit-door-langchain)](https://pypi.org/project/exit-door-langchain/)
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE)
+
+> **[𓉸 Passage Protocol](https://cellar-door.dev)** · [exit-door](https://github.com/CellarDoorExits/exit-door) · [entry-door](https://github.com/CellarDoorExits/entry-door) · [mcp](https://github.com/CellarDoorExits/mcp-server) · [langchain](https://github.com/CellarDoorExits/langchain) · [vercel](https://github.com/CellarDoorExits/vercel-ai-sdk) · [eliza](https://github.com/CellarDoorExits/eliza-exit) · [eas](https://github.com/CellarDoorExits/eas-adapter) · [erc-8004](https://github.com/CellarDoorExits/erc-8004-adapter) · [sign](https://github.com/CellarDoorExits/sign-protocol-adapter) · [python](https://github.com/CellarDoorExits/exit-python)
 
 > **⚠️ Pre-release software -- no formal security audit has been conducted.**
 
