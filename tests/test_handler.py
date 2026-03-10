@@ -6,8 +6,8 @@ from uuid import uuid4
 
 from langchain_core.agents import AgentFinish
 
-from cellar_door_exit import ExitMarker, ExitType
-from cellar_door_langchain import ExitCallbackHandler
+from exit_door import ExitMarker, ExitType
+from exit_door_langchain import ExitCallbackHandler
 
 
 class TestExitCallbackHandler:

@@ -15,7 +15,7 @@ from uuid import UUID
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.agents import AgentFinish
 
-from cellar_door_exit import (
+from exit_door import (
     ExitMarker,
     ExitType,
     quick_exit,
@@ -32,7 +32,7 @@ class ExitCallbackHandler(BaseCallbackHandler):
     finish execution. Thread-safe for concurrent chain invocations.
 
     Example:
-        >>> from cellar_door_langchain import ExitCallbackHandler
+        >>> from exit_door_langchain import ExitCallbackHandler
         >>> handler = ExitCallbackHandler(origin="my-app")
         >>> # Use with any LangChain chain or agent
         >>> chain.invoke({"input": "hello"}, config={"callbacks": [handler]})

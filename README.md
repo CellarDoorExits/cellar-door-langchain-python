@@ -1,9 +1,9 @@
-# cellar-door-langchain 𓉸
+# exit-door-langchain 𓉸
 
-[![PyPI](https://img.shields.io/pypi/v/cellar-door-langchain)](https://pypi.org/project/cellar-door-langchain/)
+[![PyPI](https://img.shields.io/pypi/v/exit-door-langchain)](https://pypi.org/project/exit-door-langchain/)
 [![tests](https://img.shields.io/badge/tests-19_passing-brightgreen)]()
-[![Python](https://img.shields.io/pypi/pyversions/cellar-door-langchain)](https://pypi.org/project/cellar-door-langchain/)
-[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+[![Python](https://img.shields.io/pypi/pyversions/exit-door-langchain)](https://pypi.org/project/exit-door-langchain/)
+[![license](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE)
 
 > **⚠️ Pre-release software -- no formal security audit has been conducted.**
 
@@ -12,11 +12,11 @@ LangChain callback handler for EXIT Protocol departure markers. Automatically cr
 ## Quick Start
 
 ```bash
-pip install cellar-door-langchain
+pip install exit-door-langchain
 ```
 
 ```python
-from cellar_door_langchain import ExitCallbackHandler
+from exit_door_langchain import ExitCallbackHandler
 
 handler = ExitCallbackHandler(origin="my-app")
 
@@ -30,7 +30,7 @@ print(handler.markers[-1].id)  # urn:exit:abc123...
 ## Configuration
 
 ```python
-from cellar_door_exit import ExitType
+from exit_door import ExitType
 
 handler = ExitCallbackHandler(
     origin="my-platform",              # Platform name (default: "langchain")
@@ -83,11 +83,11 @@ async def chat(request: ChatRequest):
 
 | Package | Language | Description |
 |---------|----------|-------------|
-| [cellar-door-exit](https://github.com/CellarDoorExits/exit-door) | TypeScript | Core protocol (reference impl) |
-| [cellar-door-exit](https://github.com/CellarDoorExits/exit-python) | Python | Core protocol |
+| [exit-door](https://github.com/CellarDoorExits/exit-door) | TypeScript | Core protocol (reference impl) |
+| [exit-door](https://github.com/CellarDoorExits/exit-python) | Python | Core protocol |
 | [cellar-door-entry](https://github.com/CellarDoorExits/entry-door) | TypeScript | Arrival/entry markers |
 | [@cellar-door/langchain](https://github.com/CellarDoorExits/langchain) | TypeScript | LangChain integration |
-| **[cellar-door-langchain](https://github.com/CellarDoorExits/cellar-door-langchain-python)** | **Python** | **LangChain integration ← you are here** |
+| **[exit-door-langchain](https://github.com/CellarDoorExits/exit-door-langchain-python)** | **Python** | **LangChain integration ← you are here** |
 | [@cellar-door/vercel-ai-sdk](https://github.com/CellarDoorExits/vercel-ai-sdk) | TypeScript | Vercel AI SDK |
 | [@cellar-door/mcp-server](https://github.com/CellarDoorExits/mcp-server) | TypeScript | MCP server |
 | [@cellar-door/eliza](https://github.com/CellarDoorExits/eliza-exit) | TypeScript | ElizaOS plugin |
@@ -99,4 +99,4 @@ async def chat(request: ChatRequest):
 
 ## License
 
-MIT
+Apache-2.0

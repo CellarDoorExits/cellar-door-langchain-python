@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cellar-door-langchain"
+name = "exit-door-langchain"
 version = "0.1.0"
 description = "LangChain callback handler for EXIT Protocol departure markers"
 readme = "README.md"
@@ -22,7 +22,7 @@ keywords = [
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -32,14 +32,15 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "cellar-door-exit>=0.1.0",
+    "entry-door>=0.1.0",
+    "exit-door>=0.1.0",
     "langchain-core>=0.2.0",
 ]
 
 [project.urls]
 Homepage = "https://cellar-door.dev"
-Repository = "https://github.com/CellarDoorExits/langchain-python"
-Issues = "https://github.com/CellarDoorExits/langchain-python/issues"
+Repository = "https://github.com/CellarDoorExits/exit-door-langchain-python"
+Issues = "https://github.com/CellarDoorExits/exit-door-langchain-python/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -50,7 +51,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/cellar_door_langchain"]
+packages = ["src/exit_door_langchain"]
 
 [tool.ruff]
 target-version = "py310"
